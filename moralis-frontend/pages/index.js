@@ -1,11 +1,6 @@
 const Home = () => {
-
   //Setup a listen for events
-  return (
-    <div>
-      HI
-    </div>
-  )
-}
+  return <div>HOMEPAGE</div>;
+};
 
 export default Home;
