@@ -8,5 +8,3 @@ Sell page
 
 DEPENDENCIES
 yarn add web3uikit moralis-v1 react-moralis
-
-1:01:10:41
