@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "moralis:sync": "moralis-admin-cli connect-local-devchain --chain hardhat --moralisSubdomain i2ga8nnqlajx.usemoralis.com --frpcPath ./frp/frpc"
+    "moralis:sync": "moralis-admin-cli connect-local-devchain --chain hardhat --moralisSubdomain ymcojvso31rh.usemoralis.com --frpcPath ./frp/frpc"
   },
   "dependencies": {
     "autoprefixer": "^10.4.12",
