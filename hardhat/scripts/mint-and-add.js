@@ -4,8 +4,6 @@ const {moveBlocks} = require("../utils/move-blocks");
 const PRICE = ethers.utils.parseEther("0.1")
 
 const mintAndList = async() => {
-    /** ERROR IT DOESN'T NEED TO DEPLOY EVERY TIME */
-    //await deployments.fixture(["all"])
     const nftMarketplace = await ethers.getContract("NftMarketplace")
 
     const basicNft = await ethers.getContract("BasicNFT")

@@ -3,9 +3,7 @@
 Moralis.Cloud.afterSave("NftAdd", async (req) => {
     const confirmed = req.object.get("confirmed")
     const logger = Moralis.Cloud.getLogger()
-    logger.info("Looking for confirmed TX")
     if(confirmed){
-        logger.info("Found nft!")
         const ActiveNfts = Moralis.Object.extend("ActiveNfts")
         logger.info("Adding Active nft!")
         const activeNfts = new ActiveNfts();
@@ -19,3 +17,48 @@ Moralis.Cloud.afterSave("NftAdd", async (req) => {
         logger.info("SAVED!")
     }
 })
+
+
+Moralis.Cloud.afterSave("NftRemove", async (req) => {
+    const confirmed = req.object.get("confirmed")
+    const logger = Moralis.Cloud.getLogger()
+    if(confirmed){
+        logger.info("Delete nft from active items!")
+        const ActiveNfts = Moralis.Object.extend("ActiveNfts")
+        const query = new Moralis.Query(ActiveNfts)
+        query.equalTo("marketplaceAddress", req.object.get("address"))
+        query.equalTo("nftAddress", req.object.get("nftAddress"))
+        query.equalTo("tokenId", req.object.get("tokenId"))
+        logger.info(`Marketplace Query: ${query}`)
+        const deletedNft = await query.first()
+        logger.info(`Marketplace | deleted item: ${deletedNft}`)
+        if(deletedNft){
+            logger.info(`Deleting ${req.object.get("tokenId")} at address ${req.object.get("nftAddress")}`)
+            await deletedNft.destroy()
+        }else{
+            logger.info(`No nft found!`)
+        }
+    }
+})
+/*TODO
+Moralis.Cloud.afterSave("NftBuy", async (req) => {
+    const confirmed = req.object.get("confirmed")
+    const logger = Moralis.Cloud.getLogger()
+    if(confirmed){
+        logger.info("Bought nft!")
+        const ActiveNfts = Moralis.Object.extend("ActiveNfts")
+        const query = new Moralis.Query(ActiveNfts)
+        query.equalTo("marketplaceAddress", req.object.get("address"))
+        query.equalTo("nftAddress", req.object.get("nftAddress"))
+        query.equalTo("tokenId", req.object.get("tokenId"))
+        logger.info(`Marketplace Query: ${query}`)
+        const deletedNft = await query.first()
+        logger.info(`Marketplace | deleted item: ${deletedNft}`)
+        if(deletedNft){
+            logger.info(`Deleting from Active Nfts Token ID: ${req.object.get("tokenId")} at address ${req.object.get("nftAddress")}`)
+            await deletedNft.destroy()
+        }else{
+            logger.info(`No nft found!`)
+        }
+    }
+})*/
