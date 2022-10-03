@@ -1,4 +1,4 @@
-import { Form, useNotification } from "web3uikit";
+import { Form, useNotification, Button } from "web3uikit";
 import { ethers } from "ethers";
 import NftMarketplaceABI from "../constants/NftMarketplace.json";
 import BasicNftABI from "../constants/BasicNft.json";
@@ -15,11 +15,20 @@ const sellnft = () => {
 
   const HandleAddNft = async (data) => {
     console.log("Approving..");
+
+    if(data.data[0].inputResult == "" || data.data[1].inputResult=="" || data.data[2].inputResult=="")
+    {
+      HandleMissingParameters()
+      return;
+    }
+
     const nftAddress = data.data[0].inputResult;
     const tokenId = data.data[1].inputResult;
     const price = ethers.utils
       .parseEther(data.data[2].inputResult, "ether")
       .toString();
+
+    
 
     const approveOptions = {
       abi: BasicNftABI,
@@ -62,6 +71,8 @@ const sellnft = () => {
         console.error(err);
       },
     });
+
+    form
   };
 
   const HandleSuccess = async (tx) => {
@@ -75,10 +86,21 @@ const sellnft = () => {
     });
   };
 
+  const HandleMissingParameters = async () => {
+    dispatch({
+      type: "error",
+      message: "Missing Parameters",
+      title: "Missing Parameters",
+      position: "topR",
+    });
+  };
+
   return (
     <div>
       <Form
+      
         onSubmit={HandleAddNft}
+        customFooter={<Button type="submit" text="Submit" />} //Submit button will be disabled after 1 click
         data={[
           {
             name: "NFT Address",

@@ -1,9 +1,7 @@
-Home Page
-Show listed NFT OK
-if you own nft you can update
-else you can buy
-Sell page
-You can list your NFT in the marketplace
+hardhat> yarn hardhat node -> To run the local hardhat chain
+moralis-frontend> yarn moralis:sync -> To connect moralis to local chain (you need to restart the sync on moralis)
+moralis-frontend> yarn moralis:cloud -> To upload scripts on moralis cloud functions
 
-DEPENDENCIES
-yarn add web3uikit moralis-v1 react-moralis
+hardhat> yarn hardhat run .\scripts\mint-and-add.js --network localhost -> Add a new nft on the local chain (For test event)
+hardhat> yarn hardhat run .\scripts\cancelNft.js --network localhost -> Remove nft on the local chain (For test event)
+hardhat> yarn hardhat run .\scripts\buyNft.js --network localhost -> Buy nft on the local chain (For test event)
