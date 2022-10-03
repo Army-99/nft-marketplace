@@ -22,7 +22,7 @@ module.exports = async function ({ getNamedAccounts, deployments }) {
         process.env.MUMBAI_API_KEY &&
         process.env.BSCSCAN_API_KEY
     ) {
-        await verify(basicNFT.address, args)
+        await verify(basicNFT.address, [])
     }
     log("------------------------------------")
 }
