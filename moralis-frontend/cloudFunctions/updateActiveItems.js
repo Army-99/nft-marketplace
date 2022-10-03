@@ -10,7 +10,6 @@ Moralis.Cloud.afterSave("NftAdd", async (req) => {
     const query = new Moralis.Query(ActiveNfts);
     query.equalTo("nftAddress", req.object.get("nftAddress"));
     query.equalTo("tokenId", req.object.get("tokenId"));
-    query.equalTo("price", req.object.get("price"));
     query.equalTo("seller", req.object.get("sender"));
     const alreadyAddeddNft = await query.first();
     if (alreadyAddeddNft) {
