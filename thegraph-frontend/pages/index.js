@@ -2,14 +2,15 @@ const { useMoralisQuery, useMoralis } = require("react-moralis");
 import NftBox from "../components/NftBox";
 
 const Home = () => {
-  const {
+  /*const {
     data: activeNfts,
     isFetching: fetchingActiveNftsItem,
     isLoading: loadingActiveNfts,
     error: errorActiveNfts,
   } = useMoralisQuery("ActiveNfts", (query) =>
     query.limit(10).descending("tokenId")
-  );
+  );*/
+  
   const { isWeb3Enabled } = useMoralis();
 
   return (

@@ -1,0 +1,31 @@
+type ActiveNft @entity {
+  id: ID!
+  buyer: Bytes!
+  seller: Bytes!
+  nftAddress: Bytes!
+  tokenId: BigInt!
+  price: BigInt
+}
+
+type NftAdd @entity {
+  id: ID!
+  seller: Bytes!
+  nftAddress: Bytes!
+  tokenId: BigInt!
+  price: BigInt
+}
+
+type NftRemove @entity {
+  id: ID!
+  nftAddress: Bytes!
+  tokenId: BigInt!
+}
+
+type NftBuy @entity {
+  id: ID!
+  buyer: Bytes!
+  nftAddress: Bytes!
+  tokenId: BigInt!
+  price: BigInt
+}
+
