@@ -23,8 +23,8 @@ const truncateString = (str, strLen) => {
   }
 };
 
-const NftBox = ({ nft }) => {
-  const { marketplaceAddress, price, nftAddress, tokenId, seller } = nft;
+const NftBox = ({ nft, marketplaceAddress }) => {
+  const { price, nftAddress, tokenId, seller } = nft;
   const { isWeb3Enabled, account } = useMoralis();
   const [imgURI, setImageURI] = useState("");
   const [tokenName, setTokenName] = useState("");
@@ -54,11 +54,13 @@ const NftBox = ({ nft }) => {
 
   const updateUI = async () => {
     const tokenURI = await getTokenURI();
+    console.log("TOKEN URI: " + tokenURI)
     if (tokenURI) {
       //Use IPFS Gateway
       const requestURL = tokenURI.replace("ipfs://", "https://ipfs.io/ipfs/");
       const response = await (await fetch(requestURL)).json();
       const image = response.image;
+      console.log(image)
       setImageURI(image);
       setTokenName(response.name);
       setTokenDescription(response.description);

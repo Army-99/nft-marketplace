@@ -7,7 +7,7 @@ import contractAddresses from "../constants/contractAddresses.json";
 
 const sellnft = () => {
   const { chainId } = useMoralis();
-  const chainString = chainId ? parseInt(chainId).toString() : "31337";
+  const chainString = chainId ? parseInt(chainId).toString() : "5";
   const marketplaceAddress = contractAddresses[chainString].NftMarketplace[0];
   const dispatch = useNotification();
 
@@ -72,7 +72,6 @@ const sellnft = () => {
       },
     });
 
-    form
   };
 
   const HandleSuccess = async (tx) => {
